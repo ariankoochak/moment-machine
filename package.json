@@ -4,7 +4,7 @@
   "description": "a package for get runtime and compare runtime",
   "main": "./source/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/ariankoochak/moment-machine/issues"
   },
-  "homepage": "https://github.com/ariankoochak/moment-machine#readme"
+  "homepage": "https://github.com/ariankoochak/moment-machine#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
