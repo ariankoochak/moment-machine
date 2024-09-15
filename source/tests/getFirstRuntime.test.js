@@ -6,8 +6,8 @@ test("getFirstRunTime", () => {
 });
 
 test("getFirstRunTime => not a function", () => {
-    const test = ()=>{
+    const testFunc = ()=>{
         return getFirstRuntime(3);
     }
-    expect(test).toThrow();
+    expect(testFunc).toThrow();
 });
