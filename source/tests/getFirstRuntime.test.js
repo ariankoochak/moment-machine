@@ -1,13 +1,13 @@
-const { getFirstRuntime } = require("..");
+const { getRuntime } = require("..");
 const { inpFunc1 } = require("./testFunctions");
 
-test("getFirstRunTime", () => {
-    expect(getFirstRuntime(inpFunc1)).toBeGreaterThanOrEqual(0);
+test("getRuntime", () => {
+    expect(getRuntime(inpFunc1)).toBeGreaterThanOrEqual(0);
 });
 
-test("getFirstRunTime => not a function", () => {
+test("getRuntime => not a function", () => {
     const testFunc = ()=>{
-        return getFirstRuntime(3);
+        return getRuntime(3);
     }
     expect(testFunc).toThrow();
 });
