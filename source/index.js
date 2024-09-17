@@ -14,6 +14,7 @@ function getRuntime(inputFunction){
 }
 
 /**
+ * This method calculates the execution time of the async function and provides it to you in the form of a promise
  * @param {Function} inputFunction 
  * @return {Promise} runtime => milliseconds
  */
@@ -25,7 +26,7 @@ async function getRuntimeSync(inputFunction){
 }
 
 /**
- * 
+ * This method provides you with the execution time of an async function with a callback function
  * @param {Function} inputFunction 
  * @param {Function} cb 
  * @callback Function err | runtime
