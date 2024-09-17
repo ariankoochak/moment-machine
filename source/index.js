@@ -46,4 +46,5 @@ function getFasterFunc(...inputFunctions){
 module.exports = {
     getRuntime,
     getFasterFunc,
+    getRuntimeSync
 }
