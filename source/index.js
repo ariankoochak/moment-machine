@@ -1,5 +1,6 @@
 const floatFixing = require("./utils/floatFixing");
 const calcRuntime = require("./utils/calcRuntime");
+const testFunc = require('./tests/testFunctions');
 
 
 /**
@@ -11,7 +12,26 @@ function getRuntime(inputFunction){
     return floatFixing(calcRuntime(inputFunction),3);
 }
 
+/**
+ * 
+ * @param  {...any} inputFunctions 
+ * @returns {Function} faster function
+ */
+function getFasterFunc(...inputFunctions){
+    let fasterFunction;
+    let fasterRuntime = Infinity;
+    for(const func of inputFunctions){
+        const runtime = calcRuntime(func);
+        if(runtime < fasterRuntime){
+            fasterFunction = func;
+            fasterRuntime = runtime
+        }
+    }
+    return fasterFunction
+    
+}
 
 module.exports = {
     getRuntime,
+    getFasterFunc,
 }
