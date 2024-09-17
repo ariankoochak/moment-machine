@@ -1,6 +1,5 @@
 const floatFixing = require("./utils/floatFixing");
 const calcRuntime = require("./utils/calcRuntime");
-const testFunc = require("./tests/testFunctions");
 const calcRuntimeSync = require("./utils/calcRuntimeSync");
 
 /**
