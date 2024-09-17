@@ -126,9 +126,7 @@ function getFasterFuncCb(inputFunctionsArr, cb) {
     }
 }
 
-getFasterFuncCb([testFunc.inpFuncSync2,testFunc.inpFuncSync1,testFunc.inpFuncSync3],(err,res)=>{
-    console.log(res);
-})
+
 module.exports = {
     getRuntime,
     getFasterFunc,
