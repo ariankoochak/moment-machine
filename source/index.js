@@ -26,6 +26,26 @@ async function getRuntimeSync(inputFunction){
 
 /**
  * 
+ * @param {Function} inputFunction 
+ * @param {Function} cb 
+ * @callback Function err | runtime
+ */
+function getRuntimeCb(inputFunction,cb){
+    try {
+        if(typeof cb !== 'function'){
+            cb = err=>console.log(err)
+            throw('callback function in getRuntimeCb not defined!')
+        }
+        calcRuntimeSync(inputFunction).then((runtime)=>{
+            cb(null,runtime)
+        })
+    } catch (error) {
+        cb(error,null)
+    }
+}
+
+/**
+ * 
  * @param  {...any} inputFunctions 
  * @returns {Function} faster function
  */
@@ -46,5 +66,6 @@ function getFasterFunc(...inputFunctions){
 module.exports = {
     getRuntime,
     getFasterFunc,
-    getRuntimeSync
+    getRuntimeSync,
+    getRuntimeCb
 }
