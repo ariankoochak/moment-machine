@@ -45,8 +45,8 @@ function getRuntimeCb(inputFunction,cb){
 }
 
 /**
- * 
- * @param  {...any} inputFunctions 
+ * Pass as many functions as you want to this method and get the fastest function based on execution time
+ * @param  {...Function} inputFunctions 
  * @returns {Function} faster function
  */
 function getFasterFunc(...inputFunctions){
