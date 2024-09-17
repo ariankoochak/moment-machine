@@ -1,6 +1,7 @@
 const floatFixing = require("./utils/floatFixing");
 const calcRuntime = require("./utils/calcRuntime");
 const testFunc = require('./tests/testFunctions');
+const calcRuntimeSync = require("./utils/calcRuntimeSync");
 
 
 /**
@@ -10,6 +11,17 @@ const testFunc = require('./tests/testFunctions');
  */
 function getRuntime(inputFunction){
     return floatFixing(calcRuntime(inputFunction),3);
+}
+
+/**
+ * @param {Function} inputFunction 
+ * @return {Promise} runtime => milliseconds
+ */
+async function getRuntimeSync(inputFunction){
+    const runtime = await calcRuntimeSync(inputFunction);
+    return new Promise((resolve,reject)=>{
+        resolve(floatFixing(runtime, 3));
+    })
 }
 
 /**
