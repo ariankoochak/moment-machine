@@ -183,6 +183,40 @@ async function getMultiRuntimeSync(
     });
 }
 
+function getMultiRuntimeCb(inputFunction,cb,options = { ignoreFirstTime: false, runtimeCount: 5 }){
+    try {
+        if (typeof cb !== "function") {
+            cb = (err) => console.log(err);
+            throw "callback function in getRuntimeCb not defined!";
+        }
+        const runTimes = [];
+        const { ignoreFirstTime, runtimeCount } = options;
+    
+        let runCount = runtimeCount !== undefined ? runtimeCount : 5;
+        if (ignoreFirstTime === true) {
+            runCount++;
+        }
+    
+        for (let i = 0; i < runCount; i++) {
+            const runtime = calcRuntimeSync(inputFunction, 5);
+            if (i === 0 && ignoreFirstTime === true) {
+                continue;
+            }
+            runTimes.push(runtime);
+        }
+    
+        Promise.all(runTimes).then((solvedRunTimes) => {
+            cb(null, {
+                runtimeCount:
+                    ignoreFirstTime === true ? runCount - 1 : runCount,
+                runtimes: [...solvedRunTimes],
+            });
+        });
+    } catch (error) {
+        cb(error,null)
+    }
+}
+
 
 module.exports = {
     getRuntime,
@@ -193,4 +227,5 @@ module.exports = {
     getFasterFuncCb,
     getMultiRuntime,
     getMultiRuntimeSync,
+    getMultiRuntimeCb,
 };
