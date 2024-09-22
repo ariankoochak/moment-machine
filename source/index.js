@@ -2,6 +2,8 @@ const floatFixing = require("./utils/floatFixing");
 const calcRuntime = require("./utils/calcRuntime");
 const calcRuntimeSync = require("./utils/calcRuntimeSync");
 
+const testFuncs = require('./tests/testFunctions')
+
 /**
  * With this method, you can get the execution time of the function (in milliseconds). Usually, the first execution of the function takes more time than subsequent executions
  * @param {Function} inputFunction
@@ -126,6 +128,28 @@ function getFasterFuncCb(inputFunctionsArr, cb) {
 }
 
 
+function getMultiRuntime(inputFunction,options = {ignoreFirstTime : false,runtimeCount : 5}){
+    const runTimes = [];
+    const {ignoreFirstTime,runtimeCount} = options
+
+    let  runCount = runtimeCount !== undefined ? runtimeCount : 5;
+    if(ignoreFirstTime === true){
+        runCount++;
+    }
+
+    for(let i = 0;i < runCount;i++){
+        const runtime = floatFixing(calcRuntime(inputFunction), 5);
+        if(i === 0 && ignoreFirstTime === true){
+            continue;
+        }
+        runTimes.push(runtime);
+    }
+    return {
+        runtimeCount: ignoreFirstTime === true ? runCount-1 : runCount,
+        runtimes: [...runTimes],
+    };
+}
+
 module.exports = {
     getRuntime,
     getFasterFunc,
@@ -133,4 +157,5 @@ module.exports = {
     getRuntimeCb,
     getFasterFuncSync,
     getFasterFuncCb,
+    getMultiRuntime,
 };
