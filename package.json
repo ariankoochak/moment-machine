@@ -1,6 +1,6 @@
 {
   "name": "moment-machine",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "a package for get runtime and compare runtime",
   "main": "./source/index.js",
   "scripts": {
