@@ -219,7 +219,7 @@ async function getMultiRuntimeSync(
 }
 
 /**
- * 
+ * This method executes an async function several times and calculates its execution time several times and places it in an array, and that array can be accessed in a callback function.
  * @param {Function} inputFunction The async function we want to calculate its execution times
  * @param {Function} cb A function that will be called as a callback and the output will be passed to this function
  * @param {{ ignoreFirstTime: boolean; runtimeCount: number; }} [options={ ignoreFirstTime: false, runtimeCount: 5 }] ignoreFirstTime → In this method, you can set this key to true and the first execution is not considered. , runtimeCount → The number of times you want this function to be executed and its time taken
