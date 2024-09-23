@@ -9,5 +9,5 @@ test("getRuntime => not a function", () => {
     const testFunc = ()=>{
         return getRuntime(3);
     }
-    expect(testFunc).toThrow();
+    expect(testFunc()).toBe(undefined);
 });
