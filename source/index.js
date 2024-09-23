@@ -127,6 +127,13 @@ function getFasterFuncCb(inputFunctionsArr, cb) {
     }
 }
 
+/**
+ * This method executes a function several times and calculates its execution time several times and puts it in an array.
+ * @param {Function} inputFunction The function we want to calculate its execution times
+ * @param {Boolean} options.ignoreFirstTime In this method, you can set this key to true and the first execution is not considered.
+ * @param {Number} options.runtimeCount The number of times you want this function to be executed and its time taken
+ * @returns {Object}
+ */
 function getMultiRuntime(
     inputFunction,
     options = { ignoreFirstTime: false, runtimeCount: 5 }
@@ -152,6 +159,12 @@ function getMultiRuntime(
     };
 }
 
+/**
+ * This method executes a async function several times and calculates its execution time several times and puts it in an array.
+ * @param {Function} inputFunction The async function we want to calculate its execution times
+ * @param {{ ignoreFirstTime: boolean; runtimeCount: number; }} [options={ ignoreFirstTime: false, runtimeCount: 5 }] ignoreFirstTime → In this method, you can set this key to true and the first execution is not considered. runtimeCount → The number of times you want this function to be executed and its time taken
+ * @returns {Promise} Promise → Returns the promise that contains the runtimes
+ */
 async function getMultiRuntimeSync(
     inputFunction,
     options = { ignoreFirstTime: false, runtimeCount: 5 }
@@ -183,6 +196,13 @@ async function getMultiRuntimeSync(
     });
 }
 
+/**
+ * 
+ * @param {Function} inputFunction The async function we want to calculate its execution times
+ * @param {Function} cb A function that will be called as a callback and the output will be passed to this function
+ * @param {{ ignoreFirstTime: boolean; runtimeCount: number; }} [options={ ignoreFirstTime: false, runtimeCount: 5 }] ignoreFirstTime → In this method, you can set this key to true and the first execution is not considered. , runtimeCount → The number of times you want this function to be executed and its time taken
+ * @callback function
+ */
 function getMultiRuntimeCb(inputFunction,cb,options = { ignoreFirstTime: false, runtimeCount: 5 }){
     try {
         if (typeof cb !== "function") {
