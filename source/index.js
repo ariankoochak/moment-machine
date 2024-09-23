@@ -1,6 +1,8 @@
 const floatFixing = require("./utils/floatFixing");
 const calcRuntime = require("./utils/calcRuntime");
 const calcRuntimeSync = require("./utils/calcRuntimeSync");
+const findFastestRuntime = require("./utils/findFastestRuntime");
+const findSlowestRuntime = require("./utils/findSlowestRuntime");
 
 /**
  * With this method, you can get the execution time of the function (in milliseconds). Usually, the first execution of the function takes more time than subsequent executions
@@ -150,11 +152,11 @@ function getFasterFuncCb(inputFunctionsArr, cb) {
  */
 function getMultiRuntime(
     inputFunction,
-    options = { ignoreFirstTime: false, runtimeCount: 5 }
+    options = { ignoreFirstTime: false, runtimeCount: 5 ,moreDetails : false}
 ) {
     try {
         const runTimes = [];
-        const { ignoreFirstTime, runtimeCount } = options;
+        const { ignoreFirstTime, runtimeCount , moreDetails} = options;
         
         let runCount = runtimeCount !== undefined ? runtimeCount : 5;
         if (ignoreFirstTime === true) {
@@ -168,10 +170,21 @@ function getMultiRuntime(
             }
             runTimes.push(runtime);
         }
-        return {
-            runtimeCount: ignoreFirstTime === true ? runCount - 1 : runCount,
-            runtimes: [...runTimes],
-        };
+
+        if(moreDetails === true){
+            return {
+                runtimeCount: ignoreFirstTime === true ? runCount - 1 : runCount,
+                fastestRuntimes : findFastestRuntime(runTimes),
+                slowestRuntimes : findSlowestRuntime(runTimes),
+                runtimes: [...runTimes],
+            };
+        }
+        else {
+            return {
+                runtimeCount: ignoreFirstTime === true ? runCount - 1 : runCount,
+                runtimes: [...runTimes],
+            };
+        }
     } catch (error) {
         console.log(error);
     }
@@ -185,7 +198,7 @@ function getMultiRuntime(
  */
 async function getMultiRuntimeSync(
     inputFunction,
-    options = { ignoreFirstTime: false, runtimeCount: 5 }
+    options = { ignoreFirstTime: false, runtimeCount: 5 ,moreDetails : false}
 ) {
     try {        
         const runTimes = [];
@@ -207,10 +220,25 @@ async function getMultiRuntimeSync(
         return new Promise((resolve, reject) => {
             Promise.all(runTimes)
                 .then((solvedRunTimes) => {
-                    resolve({
-                        runtimeCount: ignoreFirstTime === true ? runCount - 1 : runCount,
-                        runtimes: [...solvedRunTimes],
-                    });
+                    if (options.moreDetails === true) {
+                        resolve({
+                            runtimeCount:
+                                ignoreFirstTime === true
+                                    ? runCount - 1
+                                    : runCount,
+                            fastestRuntimes: findFastestRuntime(solvedRunTimes),
+                            slowestRuntimes: findSlowestRuntime(solvedRunTimes),
+                            runtimes: [...solvedRunTimes],
+                        });
+                    } else {
+                        resolve({
+                            runtimeCount:
+                                ignoreFirstTime === true
+                                    ? runCount - 1
+                                    : runCount,
+                            runtimes: [...solvedRunTimes],
+                        });
+                    }
                 })
         });
     } catch (error) {
@@ -225,14 +253,14 @@ async function getMultiRuntimeSync(
  * @param {{ ignoreFirstTime: boolean; runtimeCount: number; }} [options={ ignoreFirstTime: false, runtimeCount: 5 }] ignoreFirstTime → In this method, you can set this key to true and the first execution is not considered. , runtimeCount → The number of times you want this function to be executed and its time taken
  * @callback function
  */
-function getMultiRuntimeCb(inputFunction,cb,options = { ignoreFirstTime: false, runtimeCount: 5 }){
+function getMultiRuntimeCb(inputFunction,cb,options = { ignoreFirstTime: false, runtimeCount: 5 ,moreDetails : false}){
     try {
         if (typeof cb !== "function") {
             cb = (err) => console.log(err);
             throw "callback function in getRuntimeCb not defined!";
         }
         const runTimes = [];
-        const { ignoreFirstTime, runtimeCount } = options;
+        const { ignoreFirstTime, runtimeCount,moreDetails} = options;
     
         let runCount = runtimeCount !== undefined ? runtimeCount : 5;
         if (ignoreFirstTime === true) {
@@ -248,11 +276,21 @@ function getMultiRuntimeCb(inputFunction,cb,options = { ignoreFirstTime: false, 
         }
     
         Promise.all(runTimes).then((solvedRunTimes) => {
-            cb(null, {
-                runtimeCount:
-                    ignoreFirstTime === true ? runCount - 1 : runCount,
-                runtimes: [...solvedRunTimes],
-            });
+            if (moreDetails === true) {
+                cb(null,{
+                    runtimeCount:
+                        ignoreFirstTime === true ? runCount - 1 : runCount,
+                    fastestRuntimes: findFastestRuntime(solvedRunTimes),
+                    slowestRuntimes: findSlowestRuntime(solvedRunTimes),
+                    runtimes: [...solvedRunTimes],
+                });
+            } else {
+                cb(null,{
+                    runtimeCount:
+                        ignoreFirstTime === true ? runCount - 1 : runCount,
+                    runtimes: [...solvedRunTimes],
+                });
+            }
         });
     } catch (error) {
         cb(error,null)
