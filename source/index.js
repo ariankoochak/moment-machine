@@ -8,7 +8,11 @@ const calcRuntimeSync = require("./utils/calcRuntimeSync");
  * @returns {number} runtime => milliseconds
  */
 function getRuntime(inputFunction) {
-    return floatFixing(calcRuntime(inputFunction), 3);
+    try {
+        return floatFixing(calcRuntime(inputFunction), 3);        
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 /**
@@ -17,10 +21,14 @@ function getRuntime(inputFunction) {
  * @return {Promise} runtime => milliseconds
  */
 async function getRuntimeSync(inputFunction) {
-    const runtime = await calcRuntimeSync(inputFunction);
-    return new Promise((resolve, reject) => {
-        resolve(floatFixing(runtime, 3));
-    });
+    try {
+        const runtime = await calcRuntimeSync(inputFunction);
+        return new Promise((resolve, reject) => {
+            resolve(floatFixing(runtime, 3));
+        });
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 /**
@@ -49,16 +57,20 @@ function getRuntimeCb(inputFunction, cb) {
  * @returns {Function} faster function
  */
 function getFasterFunc(...inputFunctions) {
-    let fasterFunction;
-    let fasterRuntime = Infinity;
-    for (const func of inputFunctions) {
-        const runtime = calcRuntime(func);
-        if (runtime < fasterRuntime) {
-            fasterFunction = func;
-            fasterRuntime = runtime;
+    try {
+        let fasterFunction;
+        let fasterRuntime = Infinity;
+        for (const func of inputFunctions) {
+            const runtime = calcRuntime(func);
+            if (runtime < fasterRuntime) {
+                fasterFunction = func;
+                fasterRuntime = runtime;
+            }
         }
+        return fasterFunction;
+    } catch (error) {
+        console.log(error);
     }
-    return fasterFunction;
 }
 
 /**
@@ -67,27 +79,31 @@ function getFasterFunc(...inputFunctions) {
  * @returns {Promise} faster function
  */
 async function getFasterFuncSync(...inputFunctions) {
-    const runTimes = [];
-    let fasterRuntimeIndex = -1;
-    let fasterRuntime = Infinity;
-    for (const func of inputFunctions) {
-        const runtime = calcRuntimeSync(func);
-        runTimes.push(runtime);
-    }
-    return new Promise((resolve, reject) => {
-        Promise.all(runTimes)
-            .then((solvedRunTimes) => {
-                for (let i = 0; i < solvedRunTimes.length; i++) {
-                    if (fasterRuntime > solvedRunTimes[i]) {
-                        fasterRuntime = solvedRunTimes[i];
-                        fasterRuntimeIndex = i;
+    try {
+        const runTimes = [];
+        let fasterRuntimeIndex = -1;
+        let fasterRuntime = Infinity;
+        for (const func of inputFunctions) {
+            const runtime = calcRuntimeSync(func);
+            runTimes.push(runtime);
+        }
+        return new Promise((resolve, reject) => {
+            Promise.all(runTimes)
+                .then((solvedRunTimes) => {
+                    for (let i = 0; i < solvedRunTimes.length; i++) {
+                        if (fasterRuntime > solvedRunTimes[i]) {
+                            fasterRuntime = solvedRunTimes[i];
+                            fasterRuntimeIndex = i;
+                        }
                     }
-                }
-            })
-            .then(() => {
-                resolve(inputFunctions[fasterRuntimeIndex]);
-            });
-    });
+                })
+                .then(() => {
+                    resolve(inputFunctions[fasterRuntimeIndex]);
+                });
+        });
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 /**
@@ -136,25 +152,29 @@ function getMultiRuntime(
     inputFunction,
     options = { ignoreFirstTime: false, runtimeCount: 5 }
 ) {
-    const runTimes = [];
-    const { ignoreFirstTime, runtimeCount } = options;
-
-    let runCount = runtimeCount !== undefined ? runtimeCount : 5;
-    if (ignoreFirstTime === true) {
-        runCount++;
-    }
-
-    for (let i = 0; i < runCount; i++) {
-        const runtime = floatFixing(calcRuntime(inputFunction), 5);
-        if (i === 0 && ignoreFirstTime === true) {
-            continue;
+    try {
+        const runTimes = [];
+        const { ignoreFirstTime, runtimeCount } = options;
+        
+        let runCount = runtimeCount !== undefined ? runtimeCount : 5;
+        if (ignoreFirstTime === true) {
+            runCount++;
         }
-        runTimes.push(runtime);
+        
+        for (let i = 0; i < runCount; i++) {
+            const runtime = floatFixing(calcRuntime(inputFunction), 5);
+            if (i === 0 && ignoreFirstTime === true) {
+                continue;
+            }
+            runTimes.push(runtime);
+        }
+        return {
+            runtimeCount: ignoreFirstTime === true ? runCount - 1 : runCount,
+            runtimes: [...runTimes],
+        };
+    } catch (error) {
+        console.log(error);
     }
-    return {
-        runtimeCount: ignoreFirstTime === true ? runCount - 1 : runCount,
-        runtimes: [...runTimes],
-    };
 }
 
 /**
@@ -167,31 +187,35 @@ async function getMultiRuntimeSync(
     inputFunction,
     options = { ignoreFirstTime: false, runtimeCount: 5 }
 ) {
-    const runTimes = [];
-    const { ignoreFirstTime, runtimeCount } = options;
-
-    let runCount = runtimeCount !== undefined ? runtimeCount : 5;
-    if (ignoreFirstTime === true) {
-        runCount++;
-    }
-
-    for (let i = 0; i < runCount; i++) {
-        const runtime = calcRuntimeSync(inputFunction, 5);
-        if (i === 0 && ignoreFirstTime === true) {
-            continue;
+    try {        
+        const runTimes = [];
+        const { ignoreFirstTime, runtimeCount } = options;
+    
+        let runCount = runtimeCount !== undefined ? runtimeCount : 5;
+        if (ignoreFirstTime === true) {
+            runCount++;
         }
-        runTimes.push(runtime);
+    
+        for (let i = 0; i < runCount; i++) {
+            const runtime = calcRuntimeSync(inputFunction, 5);
+            if (i === 0 && ignoreFirstTime === true) {
+                continue;
+            }
+            runTimes.push(runtime);
+        }
+    
+        return new Promise((resolve, reject) => {
+            Promise.all(runTimes)
+                .then((solvedRunTimes) => {
+                    resolve({
+                        runtimeCount: ignoreFirstTime === true ? runCount - 1 : runCount,
+                        runtimes: [...solvedRunTimes],
+                    });
+                })
+        });
+    } catch (error) {
+        console.log(error);
     }
-
-    return new Promise((resolve, reject) => {
-        Promise.all(runTimes)
-            .then((solvedRunTimes) => {
-                resolve({
-                    runtimeCount: ignoreFirstTime === true ? runCount - 1 : runCount,
-                    runtimes: [...solvedRunTimes],
-                });
-            })
-    });
 }
 
 /**
