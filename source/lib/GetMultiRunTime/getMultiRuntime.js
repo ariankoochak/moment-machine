@@ -1,7 +1,6 @@
 const calcRuntime = require("../../utils/calcRuntime");
-const findFastestRuntime = require("../../utils/findFastestRuntime");
-const findSlowestRuntime = require("../../utils/findSlowestRuntime");
 const floatFixing = require("../../utils/floatFixing");
+const getResultForMultiRuntime = require('../../utils/getResultForMultiRuntime')
 
 
 /**
@@ -33,21 +32,7 @@ function getMultiRuntime(
             runTimes.push(runtime);
         }
 
-        if (moreDetails === true) {
-            return {
-                runtimeCount:
-                    ignoreFirstTime === true ? runCount - 1 : runCount,
-                fastestRuntimes: findFastestRuntime(runTimes),
-                slowestRuntimes: findSlowestRuntime(runTimes),
-                runtimes: [...runTimes],
-            };
-        } else {
-            return {
-                runtimeCount:
-                    ignoreFirstTime === true ? runCount - 1 : runCount,
-                runtimes: [...runTimes],
-            };
-        }
+        return getResultForMultiRuntime(runTimes,runCount,moreDetails,ignoreFirstTime)
     } catch (error) {
         console.log(error);
     }

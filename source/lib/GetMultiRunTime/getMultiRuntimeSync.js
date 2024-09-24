@@ -1,6 +1,5 @@
 const calcRuntimeSync = require("../../utils/calcRuntimeSync");
-const findFastestRuntime = require("../../utils/findFastestRuntime");
-const findSlowestRuntime = require("../../utils/findSlowestRuntime");
+const getResultForMultiRuntime = require("../../utils/getResultForMultiRuntime");
 
 /**
  * This method executes a async function several times and calculates its execution time several times and puts it in an array.
@@ -14,7 +13,7 @@ async function getMultiRuntimeSync(
 ) {
     try {
         const runTimes = [];
-        const { ignoreFirstTime, runtimeCount } = options;
+        const { ignoreFirstTime, runtimeCount,moreDetails } = options;
 
         let runCount = runtimeCount !== undefined ? runtimeCount : 5;
         if (ignoreFirstTime === true) {
@@ -31,21 +30,7 @@ async function getMultiRuntimeSync(
 
         return new Promise((resolve, reject) => {
             Promise.all(runTimes).then((solvedRunTimes) => {
-                if (options.moreDetails === true) {
-                    resolve({
-                        runtimeCount:
-                            ignoreFirstTime === true ? runCount - 1 : runCount,
-                        fastestRuntimes: findFastestRuntime(solvedRunTimes),
-                        slowestRuntimes: findSlowestRuntime(solvedRunTimes),
-                        runtimes: [...solvedRunTimes],
-                    });
-                } else {
-                    resolve({
-                        runtimeCount:
-                            ignoreFirstTime === true ? runCount - 1 : runCount,
-                        runtimes: [...solvedRunTimes],
-                    });
-                }
+                resolve(getResultForMultiRuntime(solvedRunTimes,runCount,moreDetails,ignoreFirstTime));
             });
         });
     } catch (error) {
