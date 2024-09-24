@@ -9,6 +9,7 @@ const floatFixing = require("../../utils/floatFixing");
  * @param {Function} inputFunction The function we want to calculate its execution times
  * @param {Boolean} options.ignoreFirstTime In this method, you can set this key to true and the first execution is not considered.
  * @param {Number} options.runtimeCount The number of times you want this function to be executed and its time taken
+ * @param {‌Boolean} options.moreDetails Gives more information than execution times
  * @returns {Object}
  */
 function getMultiRuntime(
