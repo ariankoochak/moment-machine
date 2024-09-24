@@ -70,7 +70,6 @@ test("getMultiRuntimeCb", async () => {
             getMultiRuntimeCb(
                 inpFuncSync2,
                 (err, res) => {
-                    console.log(res);
                     if (
                         Object.keys(res).length === 4 &&
                         res.runtimeCount === 5
