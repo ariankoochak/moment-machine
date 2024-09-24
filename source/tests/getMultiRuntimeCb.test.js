@@ -84,3 +84,45 @@ test("getMultiRuntimeCb", async () => {
     };
     await expect(testFunc()).resolves.toBe(true);
 });
+
+test("getMultiRuntimeCb", async () => {
+    const testFunc = async () => {
+        return new Promise((resolve, reject) => {
+            getMultiRuntimeCb(
+                inpFuncSync2,
+                (err, res) => {
+                    if (
+                        Object.keys(res).length === 4 &&
+                        res.runtimeCount === 5
+                    ) {
+                        resolve(true);
+                    }
+                    reject(false);
+                },
+                { moreDetails: true ,ignoreFirstTime : true}
+            );
+        });
+    };
+    await expect(testFunc()).resolves.toBe(true);
+});
+
+test("getMultiRuntimeCb", async () => {
+    const testFunc = async () => {
+        return new Promise((resolve, reject) => {
+            getMultiRuntimeCb(
+                inpFuncSync2,
+                (err, res) => {
+                    if (
+                        Object.keys(res).length === 4 &&
+                        res.runtimeCount === 13
+                    ) {
+                        resolve(true);
+                    }
+                    reject(false);
+                },
+                { moreDetails: true, ignoreFirstTime: true ,runtimeCount : 13}
+            );
+        });
+    };
+    await expect(testFunc()).resolves.toBe(true);
+});

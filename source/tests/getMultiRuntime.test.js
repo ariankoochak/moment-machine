@@ -56,3 +56,32 @@ test("getMultiRuntime", () => {
     };
     expect(test()).toBe(true);
 });
+
+test("getMultiRuntime", () => {
+    const test = () => {
+        const res = getMultiRuntime(inpFunc1, {
+            runtimeCount: 13,
+            moreDetails: true,
+        });
+        if (Object.keys(res).length === 4 && res.runtimeCount === 13) {
+            return true;
+        }
+        return false;
+    };
+    expect(test()).toBe(true);
+});
+
+test("getMultiRuntime", () => {
+    const test = () => {
+        const res = getMultiRuntime(inpFunc1, {
+            runtimeCount: 13,
+            moreDetails: true,
+            ignoreFirstTime : true,
+        });
+        if (Object.keys(res).length === 4 && res.runtimeCount === 13) {
+            return true;
+        }
+        return false;
+    };
+    expect(test()).toBe(true);
+});

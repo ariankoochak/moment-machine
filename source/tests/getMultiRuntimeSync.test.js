@@ -55,3 +55,32 @@ test("getMultiRuntimeSync", async () => {
     };
     await expect(test()).resolves.toEqual(true);
 });
+
+test("getMultiRuntimeSync", async () => {
+    const test = async () => {
+        const res = await getMultiRuntimeSync(inpFuncSync2, {
+            runtimeCount: 13,
+            moreDetails: true,
+        });
+        if (Object.keys(res).length === 4 && res.runtimeCount === 13) {
+            return true;
+        }
+        return false;
+    };
+    await expect(test()).resolves.toEqual(true);
+});
+
+test("getMultiRuntimeSync", async () => {
+    const test = async () => {
+        const res = await getMultiRuntimeSync(inpFuncSync2, {
+            ignoreFirstTime: true,
+            moreDetails: true,
+            runtimeCount : 13
+        });
+        if (Object.keys(res).length === 4 && res.runtimeCount === 13) {
+            return true;
+        }
+        return false;
+    };
+    await expect(test()).resolves.toEqual(true);
+});
