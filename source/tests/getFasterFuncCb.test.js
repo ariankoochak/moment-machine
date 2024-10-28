@@ -1,7 +1,7 @@
 const { getFasterFuncCb } = require("..");
 const { inpFuncSync1,inpFuncSync2,inpFuncSync3 } = require("./testFunctions");
 
-test("getFasterFuncCb", async () => {
+test("getFasterFuncCb-1", async () => {
     const testFunc = async () => {
         return new Promise((resolve, reject) => {
             getFasterFuncCb([inpFuncSync1,inpFuncSync2,inpFuncSync3], (err, fasterFunction) => {

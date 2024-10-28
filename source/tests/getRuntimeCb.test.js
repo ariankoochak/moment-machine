@@ -1,7 +1,7 @@
 const { getRuntimeCb } = require("..");
 const { inpFuncSync1 } = require("./testFunctions");
 
-test("getRuntimeCb", async () => {
+test("getRuntimeCb-1", async () => {
     const testFunc = async () => {
         return new Promise((resolve,reject)=>{
             getRuntimeCb(inpFuncSync1, (err, runtime) => {

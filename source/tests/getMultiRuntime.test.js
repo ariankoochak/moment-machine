@@ -1,7 +1,7 @@
 const { getMultiRuntime } = require("..");
 const { inpFunc1 } = require("./testFunctions");
 
-test("getMultiRuntime", () => {
+test("getMultiRuntime-1", () => {
     const test = () => {
         const res = getMultiRuntime(inpFunc1);
         if(Object.keys(res).length === 2 && res.runtimeCount === 5){
@@ -12,7 +12,7 @@ test("getMultiRuntime", () => {
     expect(test()).toBe(true);
 });
 
-test("getMultiRuntime", () => {
+test("getMultiRuntime-2", () => {
     const test = () => {
         const res = getMultiRuntime(inpFunc1,{runtimeCount : 10});
         if (Object.keys(res).length === 2 && res.runtimeCount === 10) {
@@ -23,7 +23,7 @@ test("getMultiRuntime", () => {
     expect(test()).toBe(true);
 });
 
-test("getMultiRuntime", () => {
+test("getMultiRuntime-3", () => {
     const test = () => {
         const res = getMultiRuntime(inpFunc1, { ignoreFirstTime: true });
         if (Object.keys(res).length === 2 && res.runtimeCount === 5) {
@@ -35,7 +35,7 @@ test("getMultiRuntime", () => {
 });
 
 
-test("getMultiRuntime", () => {
+test("getMultiRuntime-4", () => {
     const test = () => {
         const res = getMultiRuntime(inpFunc1,{moreDetails : true});
         if (Object.keys(res).length === 5 && res.runtimeCount === 5) {
@@ -46,7 +46,7 @@ test("getMultiRuntime", () => {
     expect(test()).toBe(true);
 });
 
-test("getMultiRuntime", () => {
+test("getMultiRuntime-5", () => {
     const test = () => {
         const res = getMultiRuntime(inpFunc1, { ignoreFirstTime: true,moreDetails: true });
         if (Object.keys(res).length === 5 && res.runtimeCount === 5) {
@@ -57,7 +57,7 @@ test("getMultiRuntime", () => {
     expect(test()).toBe(true);
 });
 
-test("getMultiRuntime", () => {
+test("getMultiRuntime-6", () => {
     const test = () => {
         const res = getMultiRuntime(inpFunc1, {
             runtimeCount: 13,
@@ -71,7 +71,7 @@ test("getMultiRuntime", () => {
     expect(test()).toBe(true);
 });
 
-test("getMultiRuntime", () => {
+test("getMultiRuntime-7", () => {
     const test = () => {
         const res = getMultiRuntime(inpFunc1, {
             runtimeCount: 13,

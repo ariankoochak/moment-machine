@@ -1,11 +1,11 @@
 const { getRuntime } = require("..");
 const { inpFunc1 } = require("./testFunctions");
 
-test("getRuntime", () => {
+test("getRuntime-1", () => {
     expect(getRuntime(inpFunc1)).toBeGreaterThanOrEqual(0);
 });
 
-test("getRuntime => not a function", () => {
+test("getRuntime-2 => not a function", () => {
     const testFunc = ()=>{
         return getRuntime(3);
     }
