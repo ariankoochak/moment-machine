@@ -1,7 +1,7 @@
 const { getMultiRuntimeCb } = require("..");
 const {inpFuncSync2} = require("./testFunctions");
 
-test("getMultiRuntimeCb", async () => {
+test("getMultiRuntimeCb-1", async () => {
     const testFunc = async () => {
         return new Promise((resolve, reject) => {
             getMultiRuntimeCb(inpFuncSync2, (err, res) => {
@@ -15,7 +15,7 @@ test("getMultiRuntimeCb", async () => {
     await expect(testFunc()).resolves.toBe(true);
 });
 
-test("getMultiRuntimeCb", async () => {
+test("getMultiRuntimeCb-2", async () => {
     const testFunc = async () => {
         return new Promise((resolve, reject) => {
             getMultiRuntimeCb(inpFuncSync2, (err, res) => {
@@ -29,7 +29,7 @@ test("getMultiRuntimeCb", async () => {
     await expect(testFunc()).resolves.toBe(true);
 });
 
-test("getMultiRuntimeCb", async () => {
+test("getMultiRuntimeCb-3", async () => {
     const testFunc = async () => {
         return new Promise((resolve, reject) => {
             getMultiRuntimeCb(inpFuncSync2, (err, res) => {
@@ -43,14 +43,14 @@ test("getMultiRuntimeCb", async () => {
     await expect(testFunc()).resolves.toBe(true);
 });
 
-test("getMultiRuntimeCb", async () => {
+test("getMultiRuntimeCb-4", async () => {
     const testFunc = async () => {
         return new Promise((resolve, reject) => {
             getMultiRuntimeCb(
                 inpFuncSync2,
                 (err, res) => {
                     if (
-                        Object.keys(res).length === 4 &&
+                        Object.keys(res).length === 5 &&
                         res.runtimeCount === 10
                     ) {
                         resolve(true);
@@ -64,14 +64,14 @@ test("getMultiRuntimeCb", async () => {
     await expect(testFunc()).resolves.toBe(true);
 });
 
-test("getMultiRuntimeCb", async () => {
+test("getMultiRuntimeCb-5", async () => {
     const testFunc = async () => {
         return new Promise((resolve, reject) => {
             getMultiRuntimeCb(
                 inpFuncSync2,
                 (err, res) => {
                     if (
-                        Object.keys(res).length === 4 &&
+                        Object.keys(res).length === 5 &&
                         res.runtimeCount === 5
                     ) {
                         resolve(true);
@@ -85,14 +85,14 @@ test("getMultiRuntimeCb", async () => {
     await expect(testFunc()).resolves.toBe(true);
 });
 
-test("getMultiRuntimeCb", async () => {
+test("getMultiRuntimeCb-6", async () => {
     const testFunc = async () => {
         return new Promise((resolve, reject) => {
             getMultiRuntimeCb(
                 inpFuncSync2,
                 (err, res) => {
                     if (
-                        Object.keys(res).length === 4 &&
+                        Object.keys(res).length === 5 &&
                         res.runtimeCount === 5
                     ) {
                         resolve(true);
@@ -106,14 +106,14 @@ test("getMultiRuntimeCb", async () => {
     await expect(testFunc()).resolves.toBe(true);
 });
 
-test("getMultiRuntimeCb", async () => {
+test("getMultiRuntimeCb-7", async () => {
     const testFunc = async () => {
         return new Promise((resolve, reject) => {
             getMultiRuntimeCb(
                 inpFuncSync2,
                 (err, res) => {
                     if (
-                        Object.keys(res).length === 4 &&
+                        Object.keys(res).length === 5 &&
                         res.runtimeCount === 13
                     ) {
                         resolve(true);

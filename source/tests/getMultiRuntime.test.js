@@ -38,7 +38,7 @@ test("getMultiRuntime", () => {
 test("getMultiRuntime", () => {
     const test = () => {
         const res = getMultiRuntime(inpFunc1,{moreDetails : true});
-        if (Object.keys(res).length === 4 && res.runtimeCount === 5) {
+        if (Object.keys(res).length === 5 && res.runtimeCount === 5) {
             return true;
         }
         return false;
@@ -49,7 +49,7 @@ test("getMultiRuntime", () => {
 test("getMultiRuntime", () => {
     const test = () => {
         const res = getMultiRuntime(inpFunc1, { ignoreFirstTime: true,moreDetails: true });
-        if (Object.keys(res).length === 4 && res.runtimeCount === 5) {
+        if (Object.keys(res).length === 5 && res.runtimeCount === 5) {
             return true;
         }
         return false;
@@ -63,7 +63,7 @@ test("getMultiRuntime", () => {
             runtimeCount: 13,
             moreDetails: true,
         });
-        if (Object.keys(res).length === 4 && res.runtimeCount === 13) {
+        if (Object.keys(res).length === 5 && res.runtimeCount === 13) {
             return true;
         }
         return false;
@@ -78,7 +78,9 @@ test("getMultiRuntime", () => {
             moreDetails: true,
             ignoreFirstTime : true,
         });
-        if (Object.keys(res).length === 4 && res.runtimeCount === 13) {
+        console.log(res.average);
+        
+        if (Object.keys(res).length === 5 && res.runtimeCount === 13) {
             return true;
         }
         return false;
