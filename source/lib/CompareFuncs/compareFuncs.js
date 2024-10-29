@@ -5,8 +5,8 @@ const getMultiRuntime = require("../GetMultiRunTime/getMultiRuntime");
 
 /**
  * With this method, you can compare the execution time of several functions and get complete information from it
- * @param {Function} inputFunctions The function we want to calculate its execution times
  * @param {Number} runtimeCount The number of times you want input functions to be executed and its time taken
+ * @param {Function} inputFunctions The function we want to calculate its execution times
  * @returns {Object}
  */
 function compareFuncs(runtimeCount = 5, ...inputFunctions) {
