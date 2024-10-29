@@ -45,5 +45,8 @@
   "homepage": "https://moment-machine.com",
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "sortex": "^0.1.0"
   }
 }
