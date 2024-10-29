@@ -77,9 +77,7 @@ test("getMultiRuntime-7", () => {
             runtimeCount: 13,
             moreDetails: true,
             ignoreFirstTime : true,
-        });
-        console.log(res.average);
-        
+        });        
         if (Object.keys(res).length === 5 && res.runtimeCount === 13) {
             return true;
         }
