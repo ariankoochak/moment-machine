@@ -253,3 +253,142 @@ getMultiRuntimeCb(inpFuncSync1,(err,result)=>{
     }*/
 })
 ```
+
+compareFuncs
+```js
+const inpFunc1 = ()=>{
+    let a = 324563;
+    let b = 232143214;
+    c = b - a;
+    c = c**2;
+}
+
+const inpFunc2 = () => {
+    let a = 324563;
+    let b = 232143214;
+    c = b - a;
+    c = c ** 3;
+};
+
+const inpFunc3 = () => {
+    let a = 324563;
+    let b = 232143214;
+    c = b - a;
+    c = c ** 4;
+};
+
+momentMachine.compareFuncs(5,inpFunc1,inpFunc2,inpFunc3);
+/*
+  {
+    firstRuntimes: {
+      fastest: [ [Function: inpFunc3], 0.00604 ],
+      slowest: [ [Function: inpFunc1], 0.07471 ],
+      rank: [ [Array], [Array], [Array] ]
+    },
+    multiRuntimes: {
+      fastestRun: [ [Function: inpFunc1], 0.00033 ],
+      slowestRun: [ [Function: inpFunc2], 0.00204 ],
+      fastestAverage: [ [Function: inpFunc3], 0.00036 ],
+      slowestAverage: [ [Function: inpFunc2], 0.00085 ],
+      result: [ [Array], [Array], [Array] ]
+    }
+  }
+*/
+```
+
+compareFuncsCb
+```js
+const inpFuncSync1 = async () => {
+    return await new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(true);
+        }, 2000);
+    });
+};
+
+const inpFuncSync2 = async () => {
+    return await new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(true);
+        }, 500);
+    });
+};
+
+const inpFuncSync3 = async () => {
+    return await new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(true);
+        }, 3000);
+    });
+};
+
+
+compareFuncsCb((err,res)=>{
+    console.log(res);
+    /*
+    res = {
+            firstRuntimes: {
+              fastest: [ [AsyncFunction: inpFuncSync2], 501.90492 ],
+              slowest: [ [AsyncFunction: inpFuncSync3], 3001.49104 ],
+              rank: [ [Array], [Array], [Array] ]
+            },
+            multiRuntimes: {
+              fastestRun: [ [AsyncFunction: inpFuncSync2], 500.9653329999992 ],
+              slowestRun: [ [AsyncFunction: inpFuncSync3], 3000.7440420000003 ],
+              fastestAverage: [ [AsyncFunction: inpFuncSync2], 500.97432 ],
+              slowestAverage: [ [AsyncFunction: inpFuncSync3], 3000.72284 ],
+              result: [ [Array], [Array], [Array] ]
+            }
+          }
+    */
+},5,inpFuncSync1,inpFuncSync2,inpFuncSync3)
+```
+
+compareFuncsSync
+```js
+const inpFuncSync1 = async () => {
+    return await new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(true);
+        }, 2000);
+    });
+};
+
+const inpFuncSync2 = async () => {
+    return await new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(true);
+        }, 500);
+    });
+};
+
+const inpFuncSync3 = async () => {
+    return await new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(true);
+        }, 3000);
+    });
+};
+
+const testFunc = async () => {
+    const res = await compareFuncsSync(5,inpFuncSync1,inpFuncSync2,inpFuncSync3);
+    console.log(res);
+    /*
+    res = {
+        firstRuntimes: {
+            fastest: [ [AsyncFunction: inpFuncSync2], 501.66879 ],
+            slowest: [ [AsyncFunction: inpFuncSync3], 3001.94833 ],
+            rank: [ [Array], [Array], [Array] ]
+        },
+        multiRuntimes: {
+            fastestRun: [ [AsyncFunction: inpFuncSync2], 501.0025829999995 ],
+            slowestRun: [ [AsyncFunction: inpFuncSync3], 3001.390166 ],
+            fastestAverage: [ [AsyncFunction: inpFuncSync2], 501.01521 ],
+            slowestAverage: [ [AsyncFunction: inpFuncSync3], 3001.36293 ],
+            result: [ [Array], [Array], [Array] ]
+        }
+    }
+    */
+};
+testFunc();
+```
