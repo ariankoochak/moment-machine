@@ -12,6 +12,7 @@ const getMultiRuntimeCb = require("./lib/GetMultiRunTime/getMultiRuntimeCb");
 
 const compareFuncs = require('./lib/CompareFuncs/compareFuncs');
 const compareFuncsCb = require("./lib/CompareFuncs/compareFuncsCb");
+const compareFuncsSync = require("./lib/CompareFuncs/compareFuncsSync");
 
 
 
@@ -26,5 +27,6 @@ module.exports = {
     getMultiRuntimeSync,
     getMultiRuntimeCb,
     compareFuncs,
-    compareFuncsCb
+    compareFuncsCb,
+    compareFuncsSync,
 };
