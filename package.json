@@ -47,6 +47,6 @@
     "jest": "^29.7.0"
   },
   "dependencies": {
-    "sortex": "^0.1.0"
+    "sortex": "^0.2.0"
   }
 }
