@@ -1,6 +1,7 @@
 const findFastestRuntime = require('./findFastestRuntime');
 const findSlowestRuntime = require("./findSlowestRuntime");
-const calcAverage = require('./calcAverage')
+const calcAverage = require('./calcAverage');
+const floatFixing = require('./floatFixing');
 
 /**
  * 
@@ -16,7 +17,7 @@ function getResultForMultiRuntime(arr,runCount = 5,moreDetails = false,ignoreFir
             runtimeCount: ignoreFirstTime === true ? runCount - 1 : runCount,
             fastestRuntimes: findFastestRuntime(arr),
             slowestRuntimes: findSlowestRuntime(arr),
-            average : calcAverage(arr),
+            average : floatFixing(calcAverage(arr),5),
             runtimes: [...arr],
         };
     } 
