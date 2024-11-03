@@ -5,7 +5,7 @@ const calcRuntimeSync = require("../../utils/calcRuntimeSync");
  * @param  {...Function} inputFunctions
  * @returns {Promise} faster function
  */
-async function getFasterFuncSync(...inputFunctions) {
+async function getFasterFunctionSync(...inputFunctions) {
     try {
         const runTimes = [];
         let fasterRuntimeIndex = -1;
@@ -33,4 +33,4 @@ async function getFasterFuncSync(...inputFunctions) {
     }
 }
 
-module.exports = getFasterFuncSync;
+module.exports = getFasterFunctionSync;
