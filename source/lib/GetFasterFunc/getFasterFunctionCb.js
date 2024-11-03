@@ -5,7 +5,7 @@ const calcRuntimeSync = require("../../utils/calcRuntimeSync");
  * @param  {Array} inputFunctionsArr Array of Functions
  * @callback Function err | fasterFunction
  */
-function getFasterFuncCb(inputFunctionsArr, cb) {
+function getFasterFunctionCb(inputFunctionsArr, cb) {
     try {
         if (typeof cb !== "function") {
             cb = (err) => console.log(err);
@@ -35,4 +35,4 @@ function getFasterFuncCb(inputFunctionsArr, cb) {
     }
 }
 
-module.exports = getFasterFuncCb;
+module.exports = getFasterFunctionCb;

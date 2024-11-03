@@ -1,10 +1,10 @@
-const { getFasterFuncCb } = require("..");
+const { getFasterFunctionCb } = require("..");
 const { inpFuncSync1,inpFuncSync2,inpFuncSync3 } = require("./testFunctions");
 
-test("getFasterFuncCb-1", async () => {
+test("getFasterFunctionCb-1", async () => {
     const testFunc = async () => {
         return new Promise((resolve, reject) => {
-            getFasterFuncCb([inpFuncSync1,inpFuncSync2,inpFuncSync3], (err, fasterFunction) => {
+            getFasterFunctionCb([inpFuncSync1,inpFuncSync2,inpFuncSync3], (err, fasterFunction) => {
                 return err === null && typeof fasterFunction === 'function'
                     ? resolve(true)
                     : reject(false);
