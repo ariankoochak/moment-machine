@@ -1,5 +1,5 @@
-const { getFasterFunctionCb } = require("..");
-const { inpFuncSync1,inpFuncSync2,inpFuncSync3 } = require("./testFunctions");
+const { getFasterFunctionCb } = require("../..");
+const { inpFuncSync1,inpFuncSync2,inpFuncSync3 } = require("../testFunctions");
 
 test("getFasterFunctionCb-1", async () => {
     const testFunc = async () => {

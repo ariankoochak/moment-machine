@@ -1,5 +1,5 @@
-const { getFasterFunction } = require("..");
-const { inpFunc1,inpFunc2,inpFunc3} = require("./testFunctions");
+const { getFasterFunction } = require("../..");
+const { inpFunc1,inpFunc2,inpFunc3} = require("../testFunctions");
 
 test("getFasterFunction-1", () => {
     expect(getFasterFunction(inpFunc1)).toBeInstanceOf(Function);

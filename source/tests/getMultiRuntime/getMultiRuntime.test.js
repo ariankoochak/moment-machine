@@ -1,5 +1,5 @@
-const { getMultiRuntime } = require("..");
-const { inpFunc1 } = require("./testFunctions");
+const { getMultiRuntime } = require("../..");
+const { inpFunc1 } = require("../testFunctions");
 
 test("getMultiRuntime-1", () => {
     const test = () => {

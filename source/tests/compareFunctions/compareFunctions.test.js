@@ -1,5 +1,5 @@
-const { compareFunctions } = require("..");
-const { inpFunc1,inpFunc2,inpFunc3 } = require("./testFunctions");
+const { compareFunctions } = require("../..");
+const { inpFunc1,inpFunc2,inpFunc3 } = require("../testFunctions");
 
 test("compareFunctions-1", () => {
     const test = () => {

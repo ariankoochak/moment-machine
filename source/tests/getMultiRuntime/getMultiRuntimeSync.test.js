@@ -1,5 +1,5 @@
-const { getMultiRuntimeSync } = require("..");
-const { inpFuncSync2 } = require("./testFunctions");
+const { getMultiRuntimeSync } = require("../..");
+const { inpFuncSync2 } = require("../testFunctions");
 
 test("getMultiRuntimeSync-1", async () => {
     await expect(

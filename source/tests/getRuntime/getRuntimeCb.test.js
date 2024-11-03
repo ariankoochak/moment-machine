@@ -1,5 +1,5 @@
-const { getRuntimeCb } = require("..");
-const { inpFuncSync1 } = require("./testFunctions");
+const { getRuntimeCb } = require("../..");
+const { inpFuncSync1 } = require("../testFunctions");
 
 test("getRuntimeCb-1", async () => {
     const testFunc = async () => {

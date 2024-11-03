@@ -1,5 +1,5 @@
-const { getRuntime } = require("..");
-const { inpFunc1 } = require("./testFunctions");
+const { getRuntime } = require("../..");
+const { inpFunc1 } = require("../testFunctions");
 
 test("getRuntime-1", () => {
     expect(getRuntime(inpFunc1)).toBeGreaterThanOrEqual(0);

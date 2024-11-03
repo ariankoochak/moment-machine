@@ -1,5 +1,5 @@
-const { getMultiRuntimeCb } = require("..");
-const {inpFuncSync2} = require("./testFunctions");
+const { getMultiRuntimeCb } = require("../..");
+const {inpFuncSync2} = require("../testFunctions");
 
 test("getMultiRuntimeCb-1", async () => {
     const testFunc = async () => {
