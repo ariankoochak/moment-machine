@@ -2,9 +2,9 @@ const getRuntime = require('./lib/GetRunTime/getRuntime')
 const getRuntimeSync = require("./lib/GetRunTime/getRuntimeSync");
 const getRuntimeCb = require("./lib/GetRunTime/getRuntimeCb");
 
-const getFasterFunction = require('./lib/GetFasterFunc/getFasterFunction');
-const getFasterFunctionSync = require('./lib/GetFasterFunc/getFasterFunctionSync');
-const getFasterFunctionCb = require('./lib/GetFasterFunc/getFasterFunctionCb');
+const getFasterFunction = require('./lib/GetFasterFunction/getFasterFunction');
+const getFasterFunctionSync = require('./lib/GetFasterFunction/getFasterFunctionSync');
+const getFasterFunctionCb = require('./lib/GetFasterFunction/getFasterFunctionCb');
 
 const getMultiRuntime = require('./lib/GetMultiRunTime/getMultiRuntime');
 const getMultiRuntimeSync = require("./lib/GetMultiRunTime/getMultiRuntimeSync");
