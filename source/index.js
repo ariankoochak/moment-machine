@@ -2,7 +2,7 @@ const getRuntime = require('./lib/GetRunTime/getRuntime')
 const getRuntimeSync = require("./lib/GetRunTime/getRuntimeSync");
 const getRuntimeCb = require("./lib/GetRunTime/getRuntimeCb");
 
-const getFasterFunc = require('./lib/GetFasterFunc/getFasterFunc');
+const getFasterFunction = require('./lib/GetFasterFunc/getFasterFunction');
 const getFasterFuncSync = require('./lib/GetFasterFunc/getFasterFuncSync');
 const getFasterFuncCb = require('./lib/GetFasterFunc/getFasterFuncCb');
 
@@ -18,7 +18,7 @@ const compareFuncsSync = require("./lib/CompareFuncs/compareFuncsSync");
 
 module.exports = {
     getRuntime,
-    getFasterFunc,
+    getFasterFunction,
     getRuntimeSync,
     getRuntimeCb,
     getFasterFuncSync,

@@ -5,7 +5,7 @@ const calcRuntime = require("../../utils/calcRuntime");
  * @param  {...Function} inputFunctions
  * @returns {Function} faster function
  */
-function getFasterFunc(...inputFunctions) {
+function getFasterFunction(...inputFunctions) {
     try {
         let fasterFunction;
         let fasterRuntime = Infinity;
@@ -22,4 +22,4 @@ function getFasterFunc(...inputFunctions) {
     }
 }
 
-module.exports = getFasterFunc;
+module.exports = getFasterFunction;
