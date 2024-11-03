@@ -10,7 +10,7 @@ const getMultiRuntimeSync = require("../GetMultiRunTime/getMultiRuntimeSync");
  * @param {Function} inputFunctions The function we want to calculate its execution times
  * @returns {Object}
  */
-async function compareFuncsSync(runtimeCount = 5, ...inputFunctions) {
+async function compareFunctionsSync(runtimeCount = 5, ...inputFunctions) {
     try {
         if (runtimeCount <= 0) {
             runtimeCount = 5;
@@ -48,4 +48,4 @@ async function compareFuncsSync(runtimeCount = 5, ...inputFunctions) {
     }
 }
 
-module.exports = compareFuncsSync;
+module.exports = compareFunctionsSync;

@@ -10,9 +10,9 @@ const getMultiRuntime = require('./lib/GetMultiRunTime/getMultiRuntime');
 const getMultiRuntimeSync = require("./lib/GetMultiRunTime/getMultiRuntimeSync");
 const getMultiRuntimeCb = require("./lib/GetMultiRunTime/getMultiRuntimeCb");
 
-const compareFuncs = require('./lib/CompareFuncs/compareFuncs');
-const compareFuncsCb = require("./lib/CompareFuncs/compareFuncsCb");
-const compareFuncsSync = require("./lib/CompareFuncs/compareFuncsSync");
+const compareFunctions = require('./lib/CompareFunctions/compareFunctions');
+const compareFunctionsCb = require("./lib/CompareFunctions/compareFunctionsCb");
+const compareFunctionsSync = require("./lib/CompareFunctions/compareFunctionsSync");
 
 
 
@@ -26,7 +26,7 @@ module.exports = {
     getMultiRuntime,
     getMultiRuntimeSync,
     getMultiRuntimeCb,
-    compareFuncs,
-    compareFuncsCb,
-    compareFuncsSync,
+    compareFunctions,
+    compareFunctionsCb,
+    compareFunctionsSync,
 };
